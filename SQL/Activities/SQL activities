@@ -1,0 +1,43 @@
+select * from scott.emp;
+
+desc scott.emp;
+
+select ename,deptno from scott.emp where deptno=10 order by ename;
+
+select ename,job,deptno from scott.emp order by ename asc,job,deptno desc;
+Srinath Reddy  [12:27 PM]
+SELECT ENAME,JOB,DEPTNO,SAL FROM SCOTT.EMP WHERE SAL BETWEEN 2000 AND 3000;
+SELECT ENAME,JOB,DEPTNO,SAL FROM SCOTT.EMP WHERE JOB = 'CLERK';
+SELECT 20*40 FROM DUAL;
+SELECT COUNT(*) FROM SCOTT.EMP WHERE JOB='CLERK';
+SELECT COUNT(*) FROM SCOTT.EMP WHERE JOB ='MANAGER';
+SELECT DEPTNO,COUNT(EMPNO) FROM SCOTT.EMP GROUP BY DEPTNO;
+SELECT DEPTNO,SUM(SAL) FROM SCOTT.EMP GROUP BY DEPTNO;
+SELECT ENAME,SAL FROM SCOTT.EMP WHERE SAL >(SELECT AVG(SAL) FROM SCOTT.EMP);
+SELECT AVG(SAL) FROM SCOTT.EMP;
+SELECT ENAME,SAL FROM SCOTT.EMP WHERE SAL >(SELECT AVG(SAL) FROM SCOTT.EMP);
+
+SELECT * FROM SCOTT.EMP o WHERE SAL >(SELECT AVG(SAL) FROM SCOTT.EMP i where o.deptno=i.deptno);
+
+--select all rows in emp but show dept name from dept table instead of deptno
+--inner join
+select emp.ename,dept.dname from scott.emp emp inner join scott.dept dept on emp.deptno=dept.deptno;
+
+--identify the dept that is not assigned any employees
+--left join
+select emp.ename,dept.dname from scott.dept dept left join scott.emp emp on dept.deptno=emp.deptno;
+
+--retrieve data from scott.emp to print following data
+--emp name, dept name,manager name
+select emp1.ename,emp1.deptno,emp2.mgr from scott.emp emp1 join scott.emp emp2 on emp1.deptno=emp2.deptno;
+
+--using hr schema, retrieve and print the following data
+--employee name,department name,city,country,region
+--for all employees working in the 'IT' department
+
+select e.first_name,d.department_name,l.city,c.country_name,r.region_name
+from hr.employees e JOIN hr.departments d ON d.department_id=e.department_id
+join hr.locations l ON d.location_id = l.location_id
+JOIN hr.countries c ON l.country_id=c.country_id
+JOIN hr.regions r ON c.region_id = r.region_id
+where d.department_name='IT'
