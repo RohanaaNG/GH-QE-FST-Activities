@@ -1,0 +1,18 @@
+while True:
+    player1 = input("Player 1 - Enter Rock, Paper, or Scissors: ")
+    player2 = input("Player 2 - Enter Rock, Paper, or Scissors: ")
+
+    if player1 == player2:
+        print("It's a Draw")
+
+    elif (player1 == "Rock" and player2 == "Scissors") or \
+         (player1 == "Scissors" and player2 == "Paper") or \
+         (player1 == "Paper" and player2 == "Rock"):
+        print("Player 1 Wins")
+
+    else:
+        print("Player 2 Wins")
+
+    play = input("Play again? (yes/no): ")
+    if play.lower() != "yes":
+        break
