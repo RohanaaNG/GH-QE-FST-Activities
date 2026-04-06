@@ -1,0 +1,8 @@
+services:
+    redis-server:
+        image: 'redis'
+        command: ["redis-server", "--protected-mode", "no"]
+    node-app:
+        build: .
+        ports:
+            - "8081:8081"
